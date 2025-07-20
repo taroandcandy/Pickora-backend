@@ -1,0 +1,65 @@
+[
+  {
+    "userNumber": "admin",
+    "passWord": "111111",
+    "token": "5070ed74-63fe-4eb5-946a-bd0365f17403",
+    "userName": "admin管理员",
+    "avatar": "/dudu1.gif",
+    "routes": [
+      "Product",
+      "Acl",
+      "aclUser",
+      "aclRole",
+      "aclMenus"
+    ],
+    "userId": 1752755653258,
+    "createTime": "2025-06-13 12:00:00",
+    "updateTime": "2025-07-17 21:05:01",
+    "userSex": "男",
+    "userPhone": "18723824958",
+    "Email": "ddd@qq.com",
+    "brief": "ok",
+    "roles": [
+      "超级管理员",
+      "前台",
+      "运营",
+      "前端",
+      "程序鼓励师"
+    ]
+  },
+  {
+    "userNumber": "5201314",
+    "userName": "欢欢",
+    "userSex": "2",
+    "userPhone": "18225386484",
+    "Email": "sddd@qq.com",
+    "brief": "yyds",
+    "passWord": "x123456",
+    "createTime": "2025-07-17 20:34:13",
+    "updateTime": "2025-07-17 20:34:13",
+    "userId": 1752755653256,
+    "roles": [
+      "前端",
+      "测试",
+      "后端",
+      "程序鼓励师"
+    ]
+  },
+  {
+    "userNumber": "86633",
+    "userName": "赛赛",
+    "userSex": "男",
+    "userPhone": "18225386484",
+    "Email": "ffff@qq.com",
+    "brief": "yyds",
+    "passWord": "x123456",
+    "createTime": "2025-07-17 20:35:56",
+    "updateTime": "2025-07-17 21:03:56",
+    "userId": 1752755756138,
+    "roles": [
+      "超级管理员",
+      "前台",
+      "运营"
+    ]
+  }
+]

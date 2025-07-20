@@ -1,0 +1,150 @@
+{
+  "attributes": [
+    {
+      "attrName": "电池容量",
+      "attrValueList": [
+        {
+          "valueName": "2000ma",
+          "flag": false,
+          "id": "17521379339420",
+          "attrId": "1752137933942"
+        },
+        {
+          "valueName": "5000ma",
+          "flag": false,
+          "id": "17521379339421",
+          "attrId": "1752137933942"
+        }
+      ],
+      "categoryId": "1",
+      "categoryLevel": 3,
+      "id": "1752137933942"
+    },
+    {
+      "attrName": "通信方式",
+      "attrValueList": [
+        {
+          "valueName": "2G",
+          "flag": false,
+          "id": "17521379595490",
+          "attrId": "1752137959549"
+        },
+        {
+          "valueName": "3G",
+          "flag": false,
+          "id": "17521379595491",
+          "attrId": "1752137959549"
+        },
+        {
+          "valueName": "4G",
+          "flag": false,
+          "id": "17521379595492",
+          "attrId": "1752137959549"
+        }
+      ],
+      "categoryId": "2",
+      "categoryLevel": 3,
+      "id": "1752137959549"
+    },
+    {
+      "attrName": "CPU型号",
+      "attrValueList": [
+        {
+          "valueName": "因特尔",
+          "flag": false,
+          "id": "17521379840520",
+          "attrId": "1752137984052"
+        },
+        {
+          "valueName": "amd",
+          "flag": false,
+          "id": "17521379840521",
+          "attrId": "1752137984052"
+        }
+      ],
+      "categoryId": "3",
+      "categoryLevel": 3,
+      "id": "1752137984052"
+    },
+    {
+      "attrName": "洗衣容量",
+      "attrValueList": [
+        {
+          "valueName": "16L",
+          "flag": false,
+          "id": "17521380376080",
+          "attrId": "1752138037608"
+        },
+        {
+          "valueName": "18L",
+          "flag": false,
+          "id": "17521380376091",
+          "attrId": "1752138037608"
+        }
+      ],
+      "categoryId": "5",
+      "categoryLevel": 3,
+      "id": "1752138037608"
+    },
+    {
+      "attrName": "屏幕类型",
+      "attrValueList": [
+        {
+          "valueName": "OLED",
+          "flag": false,
+          "id": "17521383912490",
+          "attrId": "1752138391249"
+        },
+        {
+          "valueName": "LED",
+          "flag": false,
+          "id": "17521383912491",
+          "attrId": "1752138391249"
+        }
+      ],
+      "categoryId": "4",
+      "categoryLevel": 3,
+      "id": "1752138391249"
+    },
+    {
+      "attrName": "运行内存",
+      "attrValueList": [
+        {
+          "valueName": "12G",
+          "flag": false,
+          "id": "17521448297490",
+          "attrId": "1752144829749"
+        },
+        {
+          "valueName": "24G",
+          "flag": false,
+          "id": "17521448297491",
+          "attrId": "1752144829749"
+        }
+      ],
+      "categoryId": "1",
+      "categoryLevel": 3,
+      "id": "1752144829749"
+    },
+    {
+      "attrName": "屏幕尺寸",
+      "attrValueList": [
+        {
+          "valueName": "8.5寸",
+          "flag": false,
+          "id": "17522035728640",
+          "attrId": "1752203572864"
+        },
+        {
+          "valueName": "8寸",
+          "flag": false,
+          "id": "17522035728641",
+          "attrId": "1752203572864"
+        }
+      ],
+      "categoryId": "1",
+      "categoryLevel": 3,
+      "id": "1752203572864"
+    }
+  ]
+}

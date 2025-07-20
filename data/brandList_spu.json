@@ -1,0 +1,47 @@
+[
+    {
+        "id": 1,
+        "tmName": "美的",
+        "category3Id": 5
+    },
+    {
+        "id": 2,
+        "tmName": "小米",
+        "category3Id": 1
+    },
+    {
+        "id": 3,
+        "tmName": "海尔",
+        "category3Id": 5
+    },
+    {
+        "id": 4,
+        "tmName": "华为",
+        "category3Id": 1
+    },
+    {
+        "id": 5,
+        "tmName": "诺基亚",
+        "category3Id": 2
+    },
+    {
+        "id": 6,
+        "tmName": "联想拯救者",
+        "category3Id": 3
+    },
+    {
+        "id": 7,
+        "tmName": "联想小新",
+        "category3Id": 4
+    },
+    {
+        "id": 8,
+        "tmName": "vivo",
+        "category3Id": 1
+    },
+    {
+        "id": 9,
+        "tmName": "oppo",
+        "category3Id": 1
+    }
+]

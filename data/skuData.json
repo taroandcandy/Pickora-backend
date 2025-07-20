@@ -1,0 +1,270 @@
+{
+  "skuList": [
+    {
+      "spuId": 1752044176422,
+      "skuName": "vivoy8",
+      "price": "1800",
+      "weight": "200",
+      "description": "一般般，还行",
+      "platformAttr": [
+        {
+          "attrId": "1752137933942",
+          "valueId": "17521379339420"
+        },
+        {
+          "attrId": "1752144829749",
+          "valueId": "17521448297490"
+        },
+        {
+          "attrId": "1752203572864",
+          "valueId": "17522035728640"
+        }
+      ],
+      "saleAttr": [
+        {
+          "attrName": "颜色",
+          "valueName": "黑色"
+        }
+      ],
+      "images": [
+        [
+          {
+            "imgUrl": "http://127.0.0.1:3000/images/spu/RPyKMkgnQ6OWkJQWproUX-e.jpg",
+            "imgName": "RPyKMkgnQ6OWkJQWproUX-e"
+          }
+        ]
+      ],
+      "id": 2,
+      "createTime": "2025-07-11 13:30:17",
+      "updateTime": "2025-07-11 13:30:17",
+      "readableAttr": []
+    },
+    {
+      "spuId": 487,
+      "skuName": "小米14",
+      "price": "4500",
+      "weight": "200",
+      "description": "徕卡极致",
+      "platformAttr": [
+        {
+          "attrId": "1752137933942",
+          "valueId": "17521379339421"
+        },
+        {
+          "attrId": "1752144829749",
+          "valueId": "17521448297491"
+        },
+        {
+          "attrId": "1752203572864",
+          "valueId": "17522035728641"
+        }
+      ],
+      "saleAttr": [
+        {
+          "attrName": "颜色",
+          "valueName": "黄色"
+        },
+        {
+          "attrName": "版本",
+          "valueName": "plus"
+        },
+        {
+          "attrName": "尺码",
+          "valueName": "128G"
+        }
+      ],
+      "images": [
+        [
+          {
+            "imgUrl": "http://127.0.0.1:3000/images/spu/-761416t5uMQl2cCR13g--flower.png",
+            "imgName": "主图"
+          },
+          {
+            "imgUrl": "http://127.0.0.1:3000/images/spu/OypRo9ortCshPb-HHbFns-y.jpg",
+            "imgName": "侧面"
+          },
+          {
+            "imgUrl": "http://127.0.0.1:3000/images/spu/4CZPLb8eaO1hqKUNhvAHE-97.png",
+            "imgName": "背面"
+          }
+        ]
+      ],
+      "id": 3,
+      "createTime": "2025-07-11 14:26:54",
+      "updateTime": "2025-07-11 14:26:54"
+    },
+    {
+      "spuId": 1752215663720,
+      "skuName": "reno9",
+      "price": "2500",
+      "weight": "200",
+      "description": "普通",
+      "platformAttr": [
+        {
+          "attrId": "1752137933942",
+          "valueId": "17521379339420"
+        },
+        {
+          "attrId": "1752144829749",
+          "valueId": "17521448297490"
+        },
+        {
+          "attrId": "1752203572864",
+          "valueId": "17522035728640"
+        }
+      ],
+      "saleAttr": [
+        {
+          "attrName": "颜色",
+          "valueName": "银色"
+        },
+        {
+          "attrName": "版本",
+          "valueName": "air"
+        },
+        {
+          "attrName": "尺码",
+          "valueName": "128G"
+        }
+      ],
+      "images": [
+        [
+          {
+            "imgUrl": "http://127.0.0.1:3000/images/spu/RoF31pLENUPXifoXKkV1w-w.jpg",
+            "imgName": "主图"
+          },
+          {
+            "imgUrl": "http://127.0.0.1:3000/images/spu/VumccG-MUMBJQIDJg0QFR-15.jpg",
+            "imgName": "侧面"
+          }
+        ]
+      ],
+      "id": 4,
+      "createTime": "2025-07-11 14:53:26",
+      "updateTime": "2025-07-11 14:53:26"
+    },
+    {
+      "spuId": 483,
+      "skuName": "美的洗衣机",
+      "price": "2500",
+      "weight": "60000",
+      "description": "洗得干净哦",
+      "platformAttr": [
+        {
+          "attrId": "1752137933942",
+          "valueId": "17521379339420"
+        },
+        {
+          "attrId": "1752144829749",
+          "valueId": "17521448297490"
+        },
+        {
+          "attrId": "1752203572864",
+          "valueId": "17522035728640"
+        }
+      ],
+      "saleAttr": [
+        {
+          "attrName": "颜色",
+          "valueName": "黑色"
+        },
+        {
+          "attrName": "版本",
+          "valueName": "大型"
+        },
+        {
+          "attrName": "尺码",
+          "valueName": "圆式"
+        }
+      ],
+      "images": [
+        [
+          {
+            "imgUrl": "http://127.0.0.1:3000/images/spu/dynIsho3ZiWPOQEcsqDEr-98.png",
+            "imgName": "正面"
+          }
+        ]
+      ],
+      "id": 6,
+      "createTime": "2025-07-15 16:26:01",
+      "updateTime": "2025-07-15 16:26:01",
+      "readableAttr": []
+    },
+    {
+      "spuId": 485,
+      "skuName": "海尔洗衣机",
+      "price": "2500",
+      "weight": "70000",
+      "description": "还不错",
+      "platformAttr": [
+        {
+          "attrId": "1752138037608",
+          "valueId": "17521380376091"
+        }
+      ],
+      "saleAttr": [
+        {
+          "attrName": "颜色",
+          "valueName": "黑色"
+        },
+        {
+          "attrName": "版本",
+          "valueName": "大型"
+        }
+      ],
+      "images": [
+        [
+          {
+            "imgUrl": "http://127.0.0.1:3000/images/spu/jSxjb34fFbwLshER_gEXA-96.png",
+            "imgName": "主图"
+          }
+        ]
+      ],
+      "id": 7,
+      "createTime": "2025-07-15 16:32:13",
+      "updateTime": "2025-07-15 16:32:13"
+    },
+    {
+      "spuId": 1752575580014,
+      "skuName": "三折叠",
+      "price": "20000",
+      "weight": "300",
+      "description": "还不错",
+      "platformAttr": [
+        {
+          "attrId": "1752137933942",
+          "valueId": "17521379339420"
+        },
+        {
+          "attrId": "1752144829749",
+          "valueId": "17521448297490"
+        },
+        {
+          "attrId": "1752203572864",
+          "valueId": "17522035728640"
+        }
+      ],
+      "saleAttr": [
+        {
+          "attrName": "颜色",
+          "valueName": "蓝色"
+        },
+        {
+          "attrName": "尺码",
+          "valueName": "9寸"
+        }
+      ],
+      "images": [
+        [
+          {
+            "imgUrl": "http://127.0.0.1:3000/images/spu/SIjhmareBC6f6WZGMfpsk-j.jpg",
+            "imgName": "SIjhmareBC6f6WZGMfpsk-j"
+          }
+        ]
+      ],
+      "id": 8,
+      "createTime": "2025-07-15 18:33:34",
+      "updateTime": "2025-07-15 18:33:34"
+    }
+  ]
+}

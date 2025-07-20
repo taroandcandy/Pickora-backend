@@ -1,0 +1,354 @@
+{
+  "spuList": [
+    {
+      "spuName": "小米",
+      "tmId": 2,
+      "description": "好用哦",
+      "category3Id": "1",
+      "spuImageList": [
+        "http://127.0.0.1:3000/images/spu/-761416t5uMQl2cCR13g--flower.png",
+        "http://127.0.0.1:3000/images/spu/OypRo9ortCshPb-HHbFns-y.jpg",
+        "http://127.0.0.1:3000/images/spu/4CZPLb8eaO1hqKUNhvAHE-97.png"
+      ],
+      "spuSaleAttrList": [
+        {
+          "attrName": "颜色",
+          "flag": 1
+        },
+        {
+          "attrName": "版本",
+          "flag": 1
+        },
+        {
+          "attrName": "尺码",
+          "flag": 1
+        }
+      ],
+      "spuPosterList": [
+        {
+          "attrName": "颜色",
+          "attrValues": [
+            "黄色",
+            "绿色"
+          ]
+        },
+        {
+          "attrName": "版本",
+          "attrValues": [
+            "plus",
+            "air"
+          ]
+        },
+        {
+          "attrName": "尺码",
+          "attrValues": [
+            "128G",
+            "256G",
+            "512G"
+          ]
+        }
+      ],
+      "id": 487,
+      "createTime": "2025-07-08 13:45:40",
+      "updateTime": "2025-07-11 10:22:19"
+    },
+    {
+      "id": 480,
+      "createTime": "2025-06-11 15:29:03",
+      "updateTime": "2025-06-11 15:29:03",
+      "spuName": "诺基亚",
+      "description": "诺基亚公司（芬兰语：Nokia Oyj，英语：Nokia Corporation；芬兰语发音：[ˈnokiɑ]、英语 /ˈnɒkiə/）是一家总部位于芬兰埃斯波，主要从事生产移动通信设备和服务的跨国公司。诺基亚成立于1865年，当时以伐木、造纸为主，后来亦陆续生产胶鞋、轮胎、电缆、手机、个人通信设备及健康设备等产品，目前核心事业以通信基础业务和先进技术研发及授权为主。",
+      "category3Id": 2,
+      "tmId": 5,
+      "spuSaleAttrList": [
+        {
+          "attrName": "颜色",
+          "flag": 1
+        },
+        {
+          "attrName": "版本",
+          "flag": 1
+        },
+        {
+          "attrName": "尺码",
+          "flag": 0
+        }
+      ],
+      "spuImageList": null,
+      "spuPosterList": [
+        {
+          "attrName": "颜色",
+          "attrValues": [
+            "黑色",
+            "白色",
+            "蓝色"
+          ]
+        },
+        {
+          "attrName": "版本",
+          "attrValues": [
+            "4G",
+            "5G"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 481,
+      "createTime": "2025-06-11 15:54:31",
+      "updateTime": "2025-06-11 15:54:31",
+      "spuName": "Y8",
+      "description": "联想(Lenovo)拯救者Y7000 15.6英寸电竞游戏本笔记本电脑 钛晶灰第13代智能英特尔®酷睿™ i7-13650HX/Windows 11 家庭中文版/15.6英寸/24G（12+12）/512G SSD/RTX™ 4060 8G独显/钛晶灰",
+      "category3Id": 3,
+      "tmId": 6,
+      "spuSaleAttrList": [
+        {
+          "attrName": "颜色",
+          "flag": 1
+        },
+        {
+          "attrName": "版本",
+          "flag": 1
+        },
+        {
+          "attrName": "尺码",
+          "flag": 0
+        }
+      ],
+      "spuImageList": null,
+      "spuPosterList": [
+        {
+          "attrName": "颜色",
+          "attrValues": [
+            "黑色",
+            "白色",
+            "蓝色"
+          ]
+        },
+        {
+          "attrName": "版本",
+          "attrValues": [
+            "4G",
+            "5G"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 482,
+      "createTime": "2025-06-12 10:10:00",
+      "updateTime": "2025-06-12 10:10:00",
+      "spuName": "小新air",
+      "description": "高清拍照，超强性能",
+      "category3Id": 4,
+      "tmId": 7,
+      "spuSaleAttrList": [
+        {
+          "attrName": "颜色",
+          "flag": 1
+        },
+        {
+          "attrName": "版本",
+          "flag": 1
+        },
+        {
+          "attrName": "尺码",
+          "flag": 0
+        }
+      ],
+      "spuImageList": null,
+      "spuPosterList": [
+        {
+          "attrName": "颜色",
+          "attrValues": [
+            "黑色",
+            "白色",
+            "蓝色"
+          ]
+        },
+        {
+          "attrName": "版本",
+          "attrValues": [
+            "4G",
+            "5G"
+          ]
+        }
+      ]
+    },
+    {
+      "spuName": "美的洗衣机 Pro",
+      "tmId": 1,
+      "description": "好用",
+      "category3Id": "5",
+      "spuImageList": [
+        "http://127.0.0.1:3000/images/spu/dynIsho3ZiWPOQEcsqDEr-98.png",
+        "http://127.0.0.1:3000/images/spu/4jt3tugUZQveOMeWkzliQ-j.jpg"
+      ],
+      "spuSaleAttrList": [
+        {
+          "attrName": "颜色",
+          "flag": 1
+        },
+        {
+          "attrName": "版本",
+          "flag": 1
+        },
+        {
+          "attrName": "尺码",
+          "flag": 1
+        }
+      ],
+      "spuPosterList": [
+        {
+          "attrName": "颜色",
+          "attrValues": [
+            "黑色",
+            "白色",
+            "蓝色"
+          ]
+        },
+        {
+          "attrName": "版本",
+          "attrValues": [
+            "大型",
+            "小型",
+            "中型"
+          ]
+        },
+        {
+          "attrName": "尺码",
+          "attrValues": [
+            "立式",
+            "圆式"
+          ]
+        }
+      ],
+      "id": 483,
+      "createTime": "2025-06-13 12:00:00",
+      "updateTime": "2025-07-15 16:25:07"
+    },
+    {
+      "spuName": "海尔 Ultra",
+      "tmId": 3,
+      "description": "很靓",
+      "category3Id": "5",
+      "spuImageList": [
+        "http://127.0.0.1:3000/images/spu/jSxjb34fFbwLshER_gEXA-96.png",
+        "http://127.0.0.1:3000/images/spu/ls6gA1aDCZ4Mw4bgF7ooW-h.jpg"
+      ],
+      "spuSaleAttrList": [
+        {
+          "attrName": "颜色",
+          "flag": 1
+        },
+        {
+          "attrName": "版本",
+          "flag": 1
+        },
+        {
+          "attrName": "尺码",
+          "flag": 0
+        }
+      ],
+      "spuPosterList": [
+        {
+          "attrName": "颜色",
+          "attrValues": [
+            "黑色",
+            "白色",
+            "蓝色"
+          ]
+        },
+        {
+          "attrName": "版本",
+          "attrValues": [
+            "大型",
+            "中型"
+          ]
+        }
+      ],
+      "id": 485,
+      "createTime": "2025-06-15 09:30:00",
+      "updateTime": "2025-07-15 16:27:12"
+    },
+    {
+      "spuName": "vivo",
+      "tmId": 8,
+      "description": "一般般",
+      "category3Id": "1",
+      "spuImageList": [
+        "http://127.0.0.1:3000/images/spu/RPyKMkgnQ6OWkJQWproUX-e.jpg",
+        "http://127.0.0.1:3000/images/spu/8IkS6wMx72GGvigyS7pQ2-j.jpg"
+      ],
+      "spuSaleAttrList": [
+        {
+          "attrName": "颜色",
+          "flag": 1
+        },
+        {
+          "attrName": "版本",
+          "flag": 0
+        },
+        {
+          "attrName": "尺码",
+          "flag": 0
+        }
+      ],
+      "spuPosterList": [
+        {
+          "attrName": "颜色",
+          "attrValues": [
+            "黑色",
+            "银色"
+          ]
+        }
+      ],
+      "id": 1752044176422,
+      "createTime": "2025-07-09 14:56:16",
+      "updateTime": "2025-07-10 15:40:02"
+    },
+    {
+      "spuName": "华为",
+      "tmId": 4,
+      "description": "一般般",
+      "category3Id": "1",
+      "spuImageList": [
+        "http://127.0.0.1:3000/images/spu/SIjhmareBC6f6WZGMfpsk-j.jpg",
+        "http://127.0.0.1:3000/images/spu/GLYLw5_JyAR42C-ZXlWBr-22.jpg"
+      ],
+      "spuSaleAttrList": [
+        {
+          "attrName": "颜色",
+          "flag": 1
+        },
+        {
+          "attrName": "版本",
+          "flag": 0
+        },
+        {
+          "attrName": "尺码",
+          "flag": 1
+        }
+      ],
+      "spuPosterList": [
+        {
+          "attrName": "颜色",
+          "attrValues": [
+            "蓝色",
+            "黑色"
+          ]
+        },
+        {
+          "attrName": "尺码",
+          "attrValues": [
+            "9寸",
+            "10寸"
+          ]
+        }
+      ],
+      "id": 1752575580014,
+      "createTime": "2025-07-15 18:33:00",
+      "updateTime": "2025-07-15 18:33:00"
+    }
+  ]
+}
