@@ -705,6 +705,38 @@ router.get('/roles/:roleId/permissions', userHandler.getSelectedPermissionNamesB
  */
 router.post("/role/:roleId/permissions", userHandler.updateRolePermissions);
 
+/**
+ * @swagger
+ * /myApi/permissions:
+ *   get:
+ *     summary: 获取全部权限列表
+ *     tags:
+ *       - 菜单管理
+ *     description: 返回完整的权限菜单树结构，不含 selected 状态。
+ *     responses:
+ *       200:
+ *         description: 成功返回权限列表
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 code:
+ *                   type: integer
+ *                   example: 200
+ *                 message:
+ *                   type: string
+ *                   example: 获取权限列表成功
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     $ref: '#/components/schemas/MenuItem'
+ *       500:
+ *         description: 服务器错误
+ */
+router.get("/permissions", userHandler.getAllPermissionList);
+
+
 
 // /**
 //  * @openapi

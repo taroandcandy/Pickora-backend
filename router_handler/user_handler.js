@@ -1274,6 +1274,29 @@ exports.updateRolePermissions = (req, res) => {
 
     return res.json({ code: 200, message: "权限更新成功" });
 };
+/**
+ * 获取所有权限
+ * @param {Object} req 
+ * @param {Object} res 
+ */
+exports.getAllPermissionList = (req, res) => {
+    try {
+        const menuTree = readMenuData(); // 假设它返回完整的菜单结构（树形）
+
+        res.json({
+            code: 200,
+            message: '获取权限列表成功',
+            data: menuTree
+        });
+    } catch (error) {
+        console.error('读取权限列表失败:', error);
+        res.status(500).json({
+            code: 500,
+            message: '服务器错误，无法读取权限列表'
+        });
+    }
+};
+
 
 /**
  * 给用户分配角色
