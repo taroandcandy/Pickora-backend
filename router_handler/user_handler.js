@@ -101,12 +101,13 @@ exports.getUserinfo_handler = async (req, res) => {
 
     res.json({
         code: 200,
-        data: {
-            userName: user.userName,
-            avatar: user.avatar,
-            routes: user.routes,
-            userId: user.userId,
-        },
+        // data: {
+        //     userName: user.userName,
+        //     avatar: user.avatar,
+        //     routes: user.routes,
+        //     userId: user.userId,
+        // },
+        data: user,
         ok: true,
         message: '请求成功'
     });
@@ -1252,6 +1253,7 @@ exports.getSelectedPermissionNamesByRoleId = (req, res) => {
  * 根据 roleId 分配权限
  * @param {Object} req 
  * @param {Object} res 
+ * 根据角色更新权限，同时更新所有使用该角色的用户的 routes
  */
 exports.updateRolePermissions = (req, res) => {
     const roleId = parseInt(req.params.roleId);
@@ -1262,17 +1264,90 @@ exports.updateRolePermissions = (req, res) => {
     }
 
     let roles = readRoleData();
-    const index = roles.findIndex(role => role.id === roleId);
+    const roleIndex = roles.findIndex(role => role.id === roleId);
 
-    if (index === -1) {
+    if (roleIndex === -1) {
         return res.status(404).json({ code: 404, message: "角色不存在" });
     }
 
-    // 更新 selected 字段
-    roles[index].selected = selected;
+    // 更新角色的权限
+    roles[roleIndex].selected = selected;
     writeRoleData(roles);
 
-    return res.json({ code: 200, message: "权限更新成功" });
+    // 更新用户数据中所有含该角色的用户的 routes
+    const users = readUserData();
+
+    // 构建 name->code 映射 和 父级关系表
+    const nameToCode = {};
+    const nameToParent = {};
+
+    const traverse = (list, parentName = null) => {
+        list.forEach(item => {
+            nameToCode[item.name] = item.code;
+            if (parentName) nameToParent[item.name] = parentName;
+            if (item.children) traverse(item.children, item.name);
+        });
+    };
+    traverse(menuData);
+
+    const getFullPermissions = (selectedNames) => {
+        const resultSet = new Set();
+
+        const collectChildren = (node) => {
+            resultSet.add(node.name);
+            if (node.children) node.children.forEach(collectChildren);
+        };
+
+        const walkTree = (tree) => {
+            tree.forEach(node => {
+                if (selectedNames.includes(node.name)) {
+                    collectChildren(node);
+                }
+                if (node.children) walkTree(node.children);
+            });
+        };
+
+        // 添加父级
+        const collectParents = (name) => {
+            while (nameToParent[name]) {
+                name = nameToParent[name];
+                resultSet.add(name);
+            }
+        };
+
+        selectedNames.forEach(name => {
+            resultSet.add(name);
+            collectParents(name);
+        });
+
+        walkTree(menuData);
+
+        return Array.from(resultSet);
+    };
+
+    const getUserRoutes = (userRoles) => {
+        const permissions = new Set();
+        for (const rname of userRoles) {
+            const r = roles.find(r => r.roleName === rname);
+            if (r && Array.isArray(r.selected)) {
+                r.selected.forEach(p => permissions.add(p));
+            }
+        }
+        const fullPermissions = getFullPermissions(Array.from(permissions));
+        const routes = fullPermissions.map(name => nameToCode[name]).filter(Boolean);
+        return Array.from(new Set([...routes, 'Home', 'Login', '404', 'Screen']));
+    };
+
+    // 遍历用户，更新含该角色的用户
+    users.forEach(user => {
+        if (user.roles && user.roles.includes(roles[roleIndex].roleName)) {
+            user.routes = getUserRoutes(user.roles);
+        }
+    });
+
+    saveUserData(users);
+
+    return res.json({ code: 200, message: "权限更新成功，相关用户已同步更新路由" });
 };
 /**
  * 获取所有权限
@@ -1296,30 +1371,230 @@ exports.getAllPermissionList = (req, res) => {
         });
     }
 };
+/**
+ * 新增/修改菜单
+ * @param {Object} req 
+ * @param {Object} res 
+ */
+// 递归查找并更新节点
+function updateNodeById(tree, id, newData) {
+    for (let node of tree) {
+        if (node.id === id) {
+            Object.assign(node, newData, { updateTime: dayjs().format('YYYY-MM-DD HH:mm:ss') })
+            return true
+        }
+        if (node.children && updateNodeById(node.children, id, newData)) return true
+    }
+    return false
+}
+// 递归查找某 pid 对应的 level
+function findLevelByPid(tree, pid, currentLevel = 1) {
+    for (let node of tree) {
+        if (node.id === pid) return node.level
+        if (node.children) {
+            const level = findLevelByPid(node.children, pid, currentLevel + 1)
+            if (level !== null) return level
+        }
+    }
+    return null
+}
+// 递归插入子节点
+function insertNodeByPid(tree, pid, newNode) {
+    for (let node of tree) {
+        if (node.id === pid) {
+            if (!node.children) node.children = []
+            node.children.push(newNode)
+            return true
+        }
+        if (node.children && insertNodeByPid(node.children, pid, newNode)) return true
+    }
+    return false
+}
+//  核心接口
+exports.saveOrUpdatePermission = (req, res) => {
+    const { id, pid, name, code } = req.body
 
+    if (!name || !code) {
+        return res.status(400).json({ code: 400, message: '名称和权限值不能为空' })
+    }
 
+    const data = readMenuData()
+
+    if (id) {
+        // 编辑模式
+        const success = updateNodeById(data, id, { name, code })
+        if (!success) {
+            return res.status(404).json({ code: 404, message: '菜单 ID 未找到' })
+        }
+        saveMenuData(data)
+        return res.json({ code: 200, message: '编辑成功' })
+    } else if (pid !== undefined) {
+        // 新增模式
+        const newId = Date.now()
+        const parentLevel = findLevelByPid(data, pid)
+        if (parentLevel === null) {
+            return res.status(404).json({ code: 404, message: '父级菜单不存在' })
+        }
+
+        const newNode = {
+            id: newId,
+            pid,
+            name,
+            code,
+            toCode: '',
+            type: 1,
+            status: null,
+            level: parentLevel + 1,
+            select: false,
+            createTime: dayjs().format('YYYY-MM-DD HH:mm:ss'),
+            updateTime: dayjs().format('YYYY-MM-DD HH:mm:ss')
+        }
+
+        const inserted = insertNodeByPid(data, pid, newNode)
+        if (!inserted) {
+            return res.status(500).json({ code: 500, message: '插入失败' })
+        }
+
+        saveMenuData(data)
+        return res.json({ code: 200, message: '新增成功' })
+    } else {
+        return res.status(400).json({ code: 400, message: '缺少 id 或 pid 参数' })
+    }
+}
+/**
+ * 删除菜单
+ * @param {Object} req 
+ * @param {Object} res 
+ */
+// 递归删除指定 id 的节点
+function deleteNodeById(tree, id) {
+    for (let i = 0; i < tree.length; i++) {
+        const node = tree[i]
+        if (node.id === id) {
+            tree.splice(i, 1)
+            return true
+        }
+        if (node.children && deleteNodeById(node.children, id)) {
+            // 如果子节点中删除成功，返回 true
+            return true
+        }
+    }
+    return false
+}
+
+// 删除菜单接口
+exports.deletePermissionById = (req, res) => {
+    const id = parseInt(req.params.id)
+    if (isNaN(id)) {
+        return res.status(400).json({ code: 400, message: '非法 ID 参数' })
+    }
+
+    const menuTree = readMenuData()
+    const deleted = deleteNodeById(menuTree, id)
+
+    if (!deleted) {
+        return res.status(404).json({ code: 404, message: '菜单 ID 不存在' })
+    }
+
+    saveMenuData(menuTree)
+    res.json({ code: 200, message: '删除成功' })
+}
 /**
  * 给用户分配角色
  * @param {Object} req 
  * @param {Object} res 
  */
+const menuData = readMenuData()
+const roleData = readRoleData()
 exports.assignUserRoles_handler = (req, res) => {
-    const { userId, roles } = req.body;
     console.log("@@分配角色@@");
+    const { userId, roles } = req.body;
+
     if (!userId || !Array.isArray(roles)) {
-        return res.status(400).json({ code: 400, message: "参数错误，必须包含 userId 和 roles 数组" });
+        return res.status(400).json({
+            code: 400,
+            message: "参数错误，必须包含 userId 和 roles 数组"
+        });
     }
 
     const userList = readUserData();
+    const userIndex = userList.findIndex(u => String(u.userId) === String(userId));
 
-    const index = userList.findIndex(u => String(u.userId) === String(userId));
-
-    if (index === -1) {
+    if (userIndex === -1) {
         return res.status(404).json({ code: 404, message: "未找到指定用户" });
     }
 
-    // 设置或覆盖 roles 字段
-    userList[index].roles = roles;
+    // Step 1: 找到该角色对应的 selected 权限
+    const selectedPermissions = new Set();
+
+    for (const roleName of roles) {
+        const role = roleData.find(r => r.roleName === roleName);
+        if (role && Array.isArray(role.selected)) {
+            role.selected.forEach(name => selectedPermissions.add(name));
+        }
+    }
+
+    // Step 2: 构造 nameToParent 和 nameToCode 映射表
+    const nameToParent = {};
+    const nameToCode = {};
+
+    const traverseTree = (tree, parentName = null) => {
+        for (const node of tree) {
+            nameToCode[node.name] = node.code;
+            if (parentName) nameToParent[node.name] = parentName;
+            if (node.children) traverseTree(node.children, node.name);
+        }
+    };
+
+    traverseTree(menuData);
+
+    // Step 3: 根据权限名找所有子权限 + 父权限
+    const getAllChildrenAndParents = (menuTree, selectedNames) => {
+        const resultSet = new Set();
+
+        const collectChildren = (node) => {
+            resultSet.add(node.name);
+            if (Array.isArray(node.children)) {
+                node.children.forEach(child => collectChildren(child));
+            }
+        };
+
+        const traverseDown = (tree) => {
+            for (const node of tree) {
+                if (selectedNames.includes(node.name)) {
+                    collectChildren(node);
+                }
+                if (node.children) traverseDown(node.children);
+            }
+        };
+
+        const collectParents = (name) => {
+            while (nameToParent[name]) {
+                name = nameToParent[name];
+                resultSet.add(name);
+            }
+        };
+
+        selectedNames.forEach(name => {
+            resultSet.add(name);
+            collectParents(name);
+        });
+
+        traverseDown(menuTree);
+
+        return Array.from(resultSet);
+    };
+
+    const allPermissionNames = getAllChildrenAndParents(menuData, Array.from(selectedPermissions));
+
+    // Step 4: 映射成前端路由 code
+    const routes = allPermissionNames
+        .map(name => nameToCode[name])
+        .filter(code => !!code); // 去除空code
+
+    // Step 5: 设置该用户信息
+    userList[userIndex].roles = roles;
+    userList[userIndex].routes = Array.from(new Set(routes).add("Home").add("Login").add("404").add("Screen")); // 添加基础页
 
     saveUserData(userList);
 
@@ -1329,123 +1604,5 @@ exports.assignUserRoles_handler = (req, res) => {
         ok: true
     });
 };
-
-
-
-
-
-
-/**
- * 编辑用户处理函数
- * @param {Object} req - 请求对象
- * @param {Object} res - 响应对象
- */
-exports.editUserData_handler = async (req, res) => {
-    const { userData } = req.body;
-    const index = userData.findIndex((u) => u.id === userData.id);
-    if (index === -1) return res.status(404).json({ code: 404, message: "用户不存在" });
-
-    // 模拟编辑用户逻辑
-    userData[index] = { ...userData[index], ...userData };
-    res.json({ code: 200, message: "编辑成功" });
-};
-
-/**
- * 删除用户处理函数
- * @param {Object} req - 请求对象
- * @param {Object} res - 响应对象
- */
-exports.delUserData_handler = async (req, res) => {
-    const { idArr } = req.body;
-    const newUserData = userData.filter((u) => !idArr.includes(u.id));
-    userData.length = 0;
-    userData.push(...newUserData);
-    res.json({ code: 200, message: "删除成功" });
-};
-
-/**
- * 更改用户状态处理函数
- * @param {Object} req - 请求对象
- * @param {Object} res - 响应对象
- */
-exports.changeState_handler = async (req, res) => {
-    const { token, state } = req.body;
-    const user = userData.find((u) => u.token === token);
-    if (!user) return res.status(404).json({ code: 404, message: "用户不存在" });
-
-    user.state = state;
-    res.json({ code: 200, message: "状态更新成功" });
-};
-
-/**
- * 获取异步路由配置处理函数
- * @param {Object} req - 请求对象
- * @param {Object} res - 响应对象
- */
-exports.getAsyncRoute_handler = async (req, res) => {
-    const token = req.headers.token;
-    const user = userData.find((u) => u.token === token);
-    if (!user) return res.status(401).json({ code: 401, message: "用户已注销或TOKEN已过期" });
-
-    // 模拟异步路由配置数据
-    const asyncRoutes = [
-        // 路由配置项
-    ];
-    res.json({
-        code: 200,
-        data: {
-            asyncRoutes,
-        },
-    });
-};
-
-/**
- * 分配用户权限处理函数
- * @param {Object} req - 请求对象
- * @param {Object} res - 响应对象
- */
-exports.distribute_handler = async (req, res) => {
-    const { userToken, routes } = req.body;
-    const user = userData.find((u) => u.token === userToken);
-    if (!user) return res.status(404).json({ code: 404, message: "用户不存在" });
-
-    user.routes = routes;
-    res.json({ code: 200, message: "权限分配成功" });
-};
-
-/**
- * 获取系统消息处理函数
- * @param {Object} req - 请求对象
- * @param {Object} res - 响应对象
- */
-exports.getMessage_handler = async (req, res) => {
-    const token = req.headers.token;
-    const user = userData.find((u) => u.token === token);
-    if (!user) return res.status(401).json({ code: 401, message: "用户已注销或TOKEN已过期" });
-
-    // 模拟系统消息数据
-    const messageData = [
-        // 消息数据项
-    ];
-    res.json({
-        code: 200,
-        data: {
-            messageData,
-        },
-    });
-};
-
-/**
- * 添加系统消息处理函数
- * @param {Object} req - 请求对象
- * @param {Object} res - 响应对象
- */
-exports.addMessage_handler = async (req, res) => {
-    // 模拟添加系统消息逻辑
-    res.json({ code: 200, message: "留言成功" });
-};
-
-
-
 
 

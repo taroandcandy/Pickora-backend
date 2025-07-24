@@ -735,309 +735,55 @@ router.post("/role/:roleId/permissions", userHandler.updateRolePermissions);
  *         description: 服务器错误
  */
 router.get("/permissions", userHandler.getAllPermissionList);
-
-
-
-// /**
-//  * @openapi
-//  * /myApi/editUserData:
-//  *   post:
-//  *     summary: 编辑用户接口
-//  *     description: 根据用户 ID 编辑用户信息
-//  *     tags:
-//  *       - 用户管理
-//  *     parameters:
-//  *       - in: header
-//  *         name: token
-//  *         schema:
-//  *           type: string
-//  *         required: true
-//  *         description: 用户的 token
-//  *     requestBody:
-//  *       required: true
-//  *       content:
-//  *         application/json:
-//  *           schema:
-//  *             type: object
-//  *             properties:
-//  *               userData:
-//  *                 type: object
-//  *                 properties:
-//  *                   id:
-//  *                     type: string
-//  *                     description: 用户 ID
-//  *                   # 其他用户信息字段
-//  *     responses:
-//  *       200:
-//  *         description: 编辑成功
-//  *         content:
-//  *           application/json:
-//  *             schema:
-//  *               type: object
-//  *               properties:
-//  *                 code:
-//  *                   type: number
-//  *                   description: 状态码，200 表示成功
-//  *                 message:
-//  *                   type: string
-//  *                   description: 响应信息
-//  *       404:
-//  *         description: 用户不存在
-//  */
-// router.post("/editUserData", userHandler.editUserData_handler);
-
-// /**
-//  * @openapi
-//  * /myApi/delUserData:
-//  *   post:
-//  *     summary: 删除用户接口
-//  *     description: 根据用户 ID 数组批量删除用户信息
-//  *     tags:
-//  *       - 用户管理
-//  *     parameters:
-//  *       - in: header
-//  *         name: token
-//  *         schema:
-//  *           type: string
-//  *         required: true
-//  *         description: 用户的 token
-//  *     requestBody:
-//  *       required: true
-//  *       content:
-//  *         application/json:
-//  *           schema:
-//  *             type: object
-//  *             properties:
-//  *               idArr:
-//  *                 type: array
-//  *                 items:
-//  *                   type: string
-//  *                 description: 需要删除的用户 ID 数组
-//  *     responses:
-//  *       200:
-//  *         description: 删除成功
-//  *         content:
-//  *           application/json:
-//  *             schema:
-//  *               type: object
-//  *               properties:
-//  *                 code:
-//  *                   type: number
-//  *                   description: 状态码，200 表示成功
-//  *                 message:
-//  *                   type: string
-//  *                   description: 响应信息
-//  */
-// router.post("/delUserData", userHandler.delUserData_handler);
-
-// /**
-//  * @openapi
-//  * /myApi/changeState:
-//  *   post:
-//  *     summary: 更改用户状态接口
-//  *     description: 根据用户的 token 更改用户的状态
-//  *     tags:
-//  *       - 用户管理
-//  *     parameters:
-//  *       - in: header
-//  *         name: token
-//  *         schema:
-//  *           type: string
-//  *         required: true
-//  *         description: 用户的 token
-//  *     requestBody:
-//  *       required: true
-//  *       content:
-//  *         application/json:
-//  *           schema:
-//  *             type: object
-//  *             properties:
-//  *               state:
-//  *                 type: boolean
-//  *                 description: 用户的新状态
-//  *     responses:
-//  *       200:
-//  *         description: 状态更新成功
-//  *         content:
-//  *           application/json:
-//  *             schema:
-//  *               type: object
-//  *               properties:
-//  *                 code:
-//  *                   type: number
-//  *                   description: 状态码，200 表示成功
-//  *                 message:
-//  *                   type: string
-//  *                   description: 响应信息
-//  *       404:
-//  *         description: 用户不存在
-//  */
-// router.post("/changeState", userHandler.changeState_handler);
-
-// /**
-//  * @openapi
-//  * /myApi/getAsyncRoute:
-//  *   get:
-//  *     summary: 获取异步路由配置接口
-//  *     description: 根据用户的 token 获取异步路由配置
-//  *     tags:
-//  *       - 权限管理
-//  *     parameters:
-//  *       - in: header
-//  *         name: token
-//  *         schema:
-//  *           type: string
-//  *         required: true
-//  *         description: 用户的 token
-//  *     responses:
-//  *       200:
-//  *         description: 获取成功
-//  *         content:
-//  *           application/json:
-//  *             schema:
-//  *               type: object
-//  *               properties:
-//  *                 code:
-//  *                   type: number
-//  *                   description: 状态码，200 表示成功
-//  *                 data:
-//  *                   type: object
-//  *                   properties:
-//  *                     asyncRoutes:
-//  *                       type: array
-//  *                       items:
-//  *                         type: object
-//  *                       description: 异步路由配置列表
-//  */
-// router.get("/getAsyncRoute", userHandler.getAsyncRoute_handler);
-
-// /**
-//  * @openapi
-//  * /myApi/distribute:
-//  *   post:
-//  *     summary: 分配用户权限接口
-//  *     description: 根据用户的 token 分配新的路由权限
-//  *     tags:
-//  *       - 权限管理
-//  *     parameters:
-//  *       - in: header
-//  *         name: token
-//  *         schema:
-//  *           type: string
-//  *         required: true
-//  *         description: 用户的 token
-//  *     requestBody:
-//  *       required: true
-//  *       content:
-//  *         application/json:
-//  *           schema:
-//  *             type: object
-//  *             properties:
-//  *               userToken:
-//  *                 type: string
-//  *                 description: 用户的 token
-//  *               routes:
-//  *                 type: array
-//  *                 items:
-//  *                   type: string
-//  *                 description: 用户的新路由权限
-//  *     responses:
-//  *       200:
-//  *         description: 权限分配成功
-//  *         content:
-//  *           application/json:
-//  *             schema:
-//  *               type: object
-//  *               properties:
-//  *                 code:
-//  *                   type: number
-//  *                   description: 状态码，200 表示成功
-//  *                 message:
-//  *                   type: string
-//  *                   description: 响应信息
-//  */
-// router.post("/distribute", userHandler.distribute_handler);
-
-// /**
-//  * @openapi
-//  * /myApi/getMessage:
-//  *   get:
-//  *     summary: 获取系统消息接口
-//  *     description: 根据用户的 token 获取系统消息列表
-//  *     tags:
-//  *       - 消息看板
-//  *     parameters:
-//  *       - in: header
-//  *         name: token
-//  *         schema:
-//  *           type: string
-//  *         required: true
-//  *         description: 用户的 token
-//  *     responses:
-//  *       200:
-//  *         description: 获取成功
-//  *         content:
-//  *           application/json:
-//  *             schema:
-//  *               type: object
-//  *               properties:
-//  *                 code:
-//  *                   type: number
-//  *                   description: 状态码，200 表示成功
-//  *                 data:
-//  *                   type: object
-//  *                   properties:
-//  *                     messageData:
-//  *                       type: array
-//  *                       items:
-//  *                         type: object
-//  *                       description: 系统消息列表
-//  */
-// router.get("/getMessage", userHandler.getMessage_handler);
-
-// /**
-//  * @openapi
-//  * /myApi/addMessage:
-//  *   post:
-//  *     summary: 添加系统消息接口
-//  *     description: 添加新的系统消息
-//  *     tags:
-//  *       - 消息看板
-//  *     parameters:
-//  *       - in: header
-//  *         name: token
-//  *         schema:
-//  *           type: string
-//  *         required: true
-//  *         description: 用户的 token
-//  *     requestBody:
-//  *       required: true
-//  *       content:
-//  *         application/json:
-//  *           schema:
-//  *             type: object
-//  *             properties:
-//  *               // 系统消息内容字段
-//  *     responses:
-//  *       200:
-//  *         description: 留言成功
-//  *         content:
-//  *           application/json:
-//  *             schema:
-//  *               type: object
-//  *               properties:
-//  *                 code:
-//  *                   type: number
-//  *                   description: 状态码，200 表示成功
-//  *                 message:
-//  *                   type: string
-//  *                   description: 响应信息
-//  */
-// router.post("/addMessage", userHandler.addMessage_handler);
-
-
-
-
+/**
+ * @swagger
+ * /myApi/permission/saveOrUpdate:
+ *   post:
+ *     summary: 新增或修改权限菜单
+ *     description: 传入 id 为修改，传入 pid 为新增
+ *     tags:
+ *       - 菜单管理
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               id:
+ *                 type: integer
+ *                 description: 编辑时传
+ *               pid:
+ *                 type: integer
+ *                 description: 新增时传
+ *               name:
+ *                 type: string
+ *               code:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: 操作成功
+ */
+router.post("/permission/saveOrUpdate", userHandler.saveOrUpdatePermission);
+/**
+ * @swagger
+ * /myApi/permission/delete/{id}:
+ *   delete:
+ *     summary: 根据 ID 删除权限菜单
+ *     tags:
+ *       - 菜单管理
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: 要删除的菜单 ID
+ *     responses:
+ *       200:
+ *         description: 删除成功
+ */
+router.delete("/permission/delete/:id", userHandler.deletePermissionById);
 
 // 商品管理
 /**
