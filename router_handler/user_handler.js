@@ -8,8 +8,7 @@ const { readBrandData, saveBrandData } = require("../utils/jsonStorage");
 const { readCategoryData, readAttributes, saveAttrData } = require("../utils/jsonStorageAttr");
 const { readSpuData, readBrandList, writeSpuData } = require("../utils/jsonStorageSpu");
 const { readRoleData, writeRoleData } = require("../utils/roleDataStore");
-const menuData = readMenuData()
-const roleData = readRoleData()
+
 
 // 模拟用户数据
 // const userData = [
@@ -1290,8 +1289,8 @@ exports.updateRolePermissions = (req, res) => {
 
     const codeToNode = {};
     const codeToParent = {};
-    console.log('menuData 类型:', typeof menuData, '长度:', Array.isArray(menuData) ? menuData.length : '不是数组');
-
+    // console.log('menuData 类型:', typeof menuData, '长度:', Array.isArray(menuData) ? menuData.length : '不是数组');
+    const menuData = readMenuData()
     const traverse = (list, parentCode = null) => {
         list.forEach((item) => {
             if (!item.code) return;
@@ -1617,7 +1616,7 @@ exports.assignUserRoles_handler = (req, res) => {
     // Step 2: 构造 codeToNode 和 codeToParent 映射
     const codeToNode = {};
     const codeToParent = {};
-
+    const menuData = readMenuData()
     const traverse = (list, parentCode = null) => {
         list.forEach(item => {
             if (!item.code) return;
@@ -1682,104 +1681,5 @@ exports.assignUserRoles_handler = (req, res) => {
         ok: true
     });
 };
-
-// exports.assignUserRoles_handler = (req, res) => {
-//     console.log("@@分配角色@@");
-//     const { userId, roles } = req.body;
-
-//     if (!userId || !Array.isArray(roles)) {
-//         return res.status(400).json({
-//             code: 400,
-//             message: "参数错误，必须包含 userId 和 roles 数组"
-//         });
-//     }
-
-//     const userList = readUserData();
-//     const userIndex = userList.findIndex(u => String(u.userId) === String(userId));
-
-//     if (userIndex === -1) {
-//         return res.status(404).json({ code: 404, message: "未找到指定用户" });
-//     }
-
-//     // Step 1: 找到该角色对应的 selected 权限
-//     const selectedPermissions = new Set();
-
-//     for (const roleName of roles) {
-//         const role = roleData.find(r => r.roleName === roleName);
-//         if (role && Array.isArray(role.selected)) {
-//             role.selected.forEach(name => selectedPermissions.add(name));
-//         }
-//     }
-
-//     // Step 2: 构造 nameToParent 和 nameToCode 映射表
-//     const nameToParent = {};
-//     const nameToCode = {};
-
-//     const traverseTree = (tree, parentName = null) => {
-//         for (const node of tree) {
-//             nameToCode[node.name] = node.code;
-//             if (parentName) nameToParent[node.name] = parentName;
-//             if (node.children) traverseTree(node.children, node.name);
-//         }
-//     };
-
-//     traverseTree(menuData);
-
-//     // Step 3: 根据权限名找所有子权限 + 父权限
-//     const getAllChildrenAndParents = (menuTree, selectedNames) => {
-//         const resultSet = new Set();
-
-//         const collectChildren = (node) => {
-//             resultSet.add(node.name);
-//             if (Array.isArray(node.children)) {
-//                 node.children.forEach(child => collectChildren(child));
-//             }
-//         };
-
-//         const traverseDown = (tree) => {
-//             for (const node of tree) {
-//                 if (selectedNames.includes(node.name)) {
-//                     collectChildren(node);
-//                 }
-//                 if (node.children) traverseDown(node.children);
-//             }
-//         };
-
-//         const collectParents = (name) => {
-//             while (nameToParent[name]) {
-//                 name = nameToParent[name];
-//                 resultSet.add(name);
-//             }
-//         };
-
-//         selectedNames.forEach(name => {
-//             resultSet.add(name);
-//             collectParents(name);
-//         });
-
-//         traverseDown(menuTree);
-
-//         return Array.from(resultSet);
-//     };
-
-//     const allPermissionNames = getAllChildrenAndParents(menuData, Array.from(selectedPermissions));
-
-//     // Step 4: 映射成前端路由 code
-//     const routes = allPermissionNames
-//         .map(name => nameToCode[name])
-//         .filter(code => !!code); // 去除空code
-
-//     // Step 5: 设置该用户信息
-//     userList[userIndex].roles = roles;
-//     userList[userIndex].routes = Array.from(new Set(routes).add("Home").add("Login").add("404").add("Screen")); // 添加基础页
-
-//     saveUserData(userList);
-
-//     res.status(200).json({
-//         code: 200,
-//         message: "角色分配成功",
-//         ok: true
-//     });
-// };
 
 
