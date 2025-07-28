@@ -5,8 +5,13 @@
     "createTime": "2025-07-20 10:00:00",
     "updateTime": "2025-07-20 17:15:35",
     "selected": [
-      "权限管理",
-      "商品管理"
+      "Acl",
+      "Product"
+    ],
+    "selectedButtons": [],
+    "selectedCodes": [
+      "Acl",
+      "Product"
     ]
   },
   {
@@ -15,18 +20,25 @@
     "createTime": "2025-07-20 10:00:00",
     "updateTime": "2025-07-20 17:15:37",
     "selected": [
-      "SPU管理",
-      "SKU管理"
-    ]
+      "btn.Role.del",
+      "btn.Role.edit",
+      "btn.Role.distributePermission"
+    ],
+    "selectedButtons": [
+      "btn.Role.del",
+      "btn.Role.edit",
+      "btn.Role.distributePermission"
+    ],
+    "selectedCodes": []
   },
   {
     "id": 4,
     "roleName": "产品",
     "createTime": "2025-07-20 10:00:00",
     "updateTime": "2025-07-20 17:15:39",
-    "selected": [
-      "商品管理"
-    ]
+    "selected": [],
+    "selectedButtons": [],
+    "selectedCodes": []
   },
   {
     "id": 5,
@@ -34,8 +46,13 @@
     "createTime": "2025-07-20 10:00:00",
     "updateTime": "2025-07-20 17:15:41",
     "selected": [
-      "权限管理",
-      "商品管理"
+      "Acl",
+      "Product"
+    ],
+    "selectedButtons": [],
+    "selectedCodes": [
+      "Acl",
+      "Product"
     ]
   },
   {
@@ -43,9 +60,9 @@
     "roleName": "后端",
     "createTime": "2025-07-20 10:00:00",
     "updateTime": "2025-07-20 17:15:43",
-    "selected": [
-      "菜单管理"
-    ]
+    "selected": [],
+    "selectedButtons": [],
+    "selectedCodes": []
   },
   {
     "id": 7,

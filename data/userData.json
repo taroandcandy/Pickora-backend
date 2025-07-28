@@ -2,15 +2,16 @@
   {
     "userNumber": "admin",
     "passWord": "111111",
-    "token": "af334df2-061a-407d-b66c-03eb11b1747b",
+    "token": "1415e0cf-fe6b-47ab-9e0b-47513b6dbe32",
     "userName": "admin管理员",
     "avatar": "/dudu1.gif",
     "routes": [
       "Acl",
-      "Product",
       "User",
       "Role",
       "MenuManage",
+      "AllData",
+      "Product",
       "Trademark",
       "Attr",
       "Spu",
@@ -19,6 +20,34 @@
       "Login",
       "404",
       "Screen"
+    ],
+    "buttons": [
+      "btn.User.add",
+      "btn.User.del",
+      "btn.User.edit",
+      "btn.User.distributeRole",
+      "btn.User.delMore",
+      "btn.Role.add",
+      "btn.Role.del",
+      "btn.Role.edit",
+      "btn.Role.distributePermission",
+      "btn.Menu.add",
+      "btn.Menu.del",
+      "btn.Menu.edit",
+      "btn.Trademark.add",
+      "btn.Trademark.del",
+      "btn.Trademark.edit",
+      "btn.Attr.add",
+      "btn.Attr.del",
+      "btn.Attr.edit",
+      "btn.SPU.addSpu",
+      "btn.SPU.delSpu",
+      "btn.SPU.editSpu",
+      "btn.SPU.addSku",
+      "btn.SPU.viewSku",
+      "btn.SKU.edit",
+      "btn.SKU.del",
+      "btn.SKU.view"
     ],
     "userId": 1752755653258,
     "createTime": "2025-06-13 12:00:00",
@@ -37,10 +66,11 @@
     "avatar": "/dudu1.gif",
     "routes": [
       "Acl",
-      "Product",
       "User",
       "Role",
       "MenuManage",
+      "AllData",
+      "Product",
       "Trademark",
       "Attr",
       "Spu",
@@ -49,6 +79,34 @@
       "Login",
       "404",
       "Screen"
+    ],
+    "buttons": [
+      "btn.User.add",
+      "btn.User.del",
+      "btn.User.edit",
+      "btn.User.distributeRole",
+      "btn.User.delMore",
+      "btn.Role.add",
+      "btn.Role.del",
+      "btn.Role.edit",
+      "btn.Role.distributePermission",
+      "btn.Menu.add",
+      "btn.Menu.del",
+      "btn.Menu.edit",
+      "btn.Trademark.add",
+      "btn.Trademark.del",
+      "btn.Trademark.edit",
+      "btn.Attr.add",
+      "btn.Attr.del",
+      "btn.Attr.edit",
+      "btn.SPU.addSpu",
+      "btn.SPU.delSpu",
+      "btn.SPU.editSpu",
+      "btn.SPU.addSku",
+      "btn.SPU.viewSku",
+      "btn.SKU.edit",
+      "btn.SKU.del",
+      "btn.SKU.view"
     ],
     "userSex": "2",
     "userPhone": "18225386484",
@@ -61,7 +119,7 @@
     "roles": [
       "前端"
     ],
-    "token": "838fcb83-2c62-4101-ae1b-3d55dbe28eb9"
+    "token": "01de4c28-5ebb-4d22-8eb3-75a2e2f1f092"
   },
   {
     "userNumber": "86633",
@@ -79,14 +137,19 @@
       "用户"
     ],
     "routes": [
-      "Spu",
-      "Product",
-      "Sku",
+      "Role",
+      "Acl",
+      "AllData",
       "Home",
       "Login",
       "404",
       "Screen"
     ],
-    "token": "6dad5a5c-cc8e-437e-a478-c6190c898af2"
+    "buttons": [
+      "btn.Role.del",
+      "btn.Role.edit",
+      "btn.Role.distributePermission"
+    ],
+    "token": "d85d46f3-73a7-4997-89df-79fb741f3eac"
   }
 ]
