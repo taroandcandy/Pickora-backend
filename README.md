@@ -1,6 +1,6 @@
 # Silicon Valley Backend Gateway
 
-一个基于 Node.js + Express 的后台管理系统模拟网关，用本地 JSON 文件作为数据源，提供用户认证、权限管理、品牌管理、商品分类、平台属性、SPU/SKU 管理和图片上传等接口。
+一个基于 Node.js + Express 的后台管理系统，用本地 JSON 文件作为数据源，提供用户认证、权限管理、品牌管理、商品分类、平台属性、SPU/SKU 管理和图片上传等接口。
 
 ## 技术栈
 
